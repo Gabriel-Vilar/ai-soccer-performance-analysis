@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import pandas as pd
 
 playerlist = []
 FILE_NAME = Path().parent / 'data'/ 'players.json'
@@ -111,13 +112,25 @@ if __name__ == '__main__':
     addplayer(playerlist, p1, p2, p3, p4, p5)
     showplayers(playerlist)
     findplayer(playerlist, 'vilar')
-    removeplayer(playerlist, 'vilar')
+    # removeplayer(playerlist, 'vilar')
     showplayers(playerlist)
     print(p1 == p2)
     p1_dicted = p1.to_dict()
     save_players(playerlist, FILE_NAME)
     print()
     loaded_players = load_players(FILE_NAME)
+
+    dict_list = [player.to_dict() for player in loaded_players]
+    df = pd.DataFrame(dict_list)
+    print(df)
+    print(df.head())
+    print(df.describe())
+    print(df['Age'].mean())
+    print(df["Position"] == "Attacking Midfielder")
+    meio_campistas = df[df["Position"] == "Attacking Midfielder"]
+    print(meio_campistas)
+    df["Category"] = df['Age'].apply(lambda x: 'Young' if x < 30 else 'Experienced')
+    print(df)
     
 
 
