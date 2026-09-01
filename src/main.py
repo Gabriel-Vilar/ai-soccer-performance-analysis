@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 import pandas as pd
+import matplotlib.pyplot as plt
 
 playerlist = []
 FILE_NAME = Path().parent / 'data'/ 'players.json'
@@ -104,7 +105,7 @@ def load_players(filename):
 
 if __name__ == '__main__':
     p1 = Player('Gabriel Vilar', 18, 'Attacking Midfielder')
-    p2 = Player('Gabriel Vilar', 18, 'Left Winger')
+    p2 = Player('Matheus Vilar', 18, 'Left Winger')
     p3 = Player('Cristiano Ronaldo', 41, 'Stricker')
     p4 = Player('Lionel Messi', 39, 'Right Winger')
     p5 = Player('Neymar Jr', 34, 'Attacking Midfielder')
@@ -126,11 +127,35 @@ if __name__ == '__main__':
     print(df.head())
     print(df.describe())
     print(df['Age'].mean())
-    print(df["Position"] == "Attacking Midfielder")
-    meio_campistas = df[df["Position"] == "Attacking Midfielder"]
+    print(df['Position'] == 'Attacking Midfielder')
+    meio_campistas = df[df['Position'] == 'Attacking Midfielder']
     print(meio_campistas)
-    df["Category"] = df['Age'].apply(lambda x: 'Young' if x < 30 else 'Experienced')
+    df['Category'] = df['Age'].apply(lambda x: 'Young' if x < 30 else 'Experienced')
     print(df)
+
+    plt.figure(figsize=(8, 5))
+    colors = ['red' if cat == 'Experienced' else 'steelblue' for cat in df['Category']]
+    plt.bar(df['Name'], df['Age'], color=colors)
+    plt.title("Player's age")
+    plt.xlabel('Player')
+    plt.ylabel('Age')
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.savefig(Path().parent / 'data' / "player's_age.png")
+    plt.show()
+
+    count = df['Position'].value_counts()
+    print(count)
+    plt.figure(figsize = (8, 5))
+    plt.bar(count.index, count.values, color = 'steelblue') # type: ignore
+    plt.title('Number of players per position')
+    plt.xlabel('Position')
+    plt.ylabel('Number of players')
+    plt.xticks(rotation=45, ha = 'right')
+    plt.tight_layout()
+    plt.savefig(Path().parent / 'data' / 'players_per_position.png')
+    plt.show()
+
     
 
 
