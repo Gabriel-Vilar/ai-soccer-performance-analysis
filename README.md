@@ -31,8 +31,8 @@ footage.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   cd <your-repo>
+   git clone https://github.com/Gabriel-Vilar/ai-soccer-performance-analysis.git
+   cd ai-soccer-performance-analysis
    ```
 
 2. Install dependencies:
