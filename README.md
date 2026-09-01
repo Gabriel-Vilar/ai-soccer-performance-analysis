@@ -13,11 +13,14 @@ footage.
 
 ## Technologies (so far)
 - Python
+- Pandas (data analysis)
+- Matplotlib (data visualization)
 
 ## Roadmap
-- [ ] Player data structure
-- [ ] Save/load data in JSON
-- [ ] Basic data analysis (Pandas)
+- [x] Player data structure
+- [x] Save/load data in JSON
+- [x] Basic data analysis (Pandas)
+- [x] Data visualization (Matplotlib)
 - [ ] Video processing (OpenCV)
 - [ ] Player detection (YOLO)
 - [ ] Player tracking
@@ -25,8 +28,27 @@ footage.
 - [ ] Dashboard with visualizations
 
 ## How to run
-_Coming soon — project setup instructions will be added once the first
-version is working._
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-username>/<your-repo>.git
+   cd <your-repo>
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install pandas matplotlib
+   ```
+
+3. Run the main script:
+   ```bash
+   python main.py
+   ```
+
+This will create/update `data/players.json` with sample player data and
+generate two charts in the `data/` folder:
+- `player's_age.png` — bar chart of player ages
+- `players_per_position.png` — bar chart of players per position
 
 ## Author
 Gabriel Vilar
