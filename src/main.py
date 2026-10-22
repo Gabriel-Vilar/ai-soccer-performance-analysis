@@ -114,7 +114,7 @@ if __name__ == '__main__':
     showplayers(playerlist)
     findplayer(playerlist, 'vilar')
     # removeplayer(playerlist, 'vilar')
-    showplayers(playerlist)
+    # showplayers(playerlist)
     print(p1 == p2)
     p1_dicted = p1.to_dict()
     save_players(playerlist, FILE_NAME)
@@ -123,7 +123,6 @@ if __name__ == '__main__':
 
     dict_list = [player.to_dict() for player in loaded_players]
     df = pd.DataFrame(dict_list)
-    print(df)
     print(df.head())
     print(df.describe())
     print(df['Age'].mean())
@@ -132,6 +131,7 @@ if __name__ == '__main__':
     print(meio_campistas)
     df['Category'] = df['Age'].apply(lambda x: 'Young' if x < 30 else 'Experienced')
     print(df)
+
 
     plt.figure(figsize=(8, 5))
     colors = ['red' if cat == 'Experienced' else 'steelblue' for cat in df['Category']]
@@ -155,6 +155,14 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.savefig(Path().parent / 'data' / 'players_per_position.png')
     plt.show()
+    print()
+
+    mean_age_per_position = df.groupby('Position')['Age'].mean()
+    print(mean_age_per_position)
+
+    ordered_by_age = df.sort_values('Age', ascending = False).head(3)
+    print(ordered_by_age)
+    
 
     
 
